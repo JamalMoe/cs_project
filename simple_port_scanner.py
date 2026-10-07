@@ -24,14 +24,14 @@ class PortScanner:
         for port in self.ports:
             if self._is_open(port):
                 self.open_ports.append(port)
-            return self.open_ports
+        return self.open_ports
     
     def _is_open(self, port: int) -> bool:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.settimeout(self.timeout)
         try:
-            result = sock.connect_ex((self.target, port))
-            return result == 0
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.settimeout(self.timeout)
+                result = sock.connect_ex((self.target, port))
+                return result == 0
         except socket.gaierror:
             raise ValueError(f"Could not resolve host: {self.target}")
     
@@ -43,12 +43,15 @@ class PortScanner:
         if not self.open_ports:
             print("No open ports found.")
             return
+
+        print(f"Open ports: {self.open_ports}")
+
         for port in self.open_ports:
             print(f" {port}/tcp open")
 
 
 if __name__ == "__main__":
-    ports = [21, 22, 80, 443, 3389, 0, 90, 8, 7, 6 ,500, 77, 80, 89, 45, 53, 67, 10, 40, 50]
+    ports =  [135, 139, 445]
     scanner = PortScanner(target="172.27.125.219", ports=ports)
     scanner.scan()
     scanner.report()
