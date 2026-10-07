@@ -48,7 +48,7 @@ class PortScanner:
 
 
 if __name__ == "__main__":
-    ports = [21, 22, 80, 443, 3389, 0, 90, 8, 7, 6 ,500, 77, 80, 89, 45, 53, 67]
+    ports = [21, 22, 80, 443, 3389, 0, 90, 8, 7, 6 ,500, 77, 80, 89, 45, 53, 67, 10, 40, 50]
     scanner = PortScanner(target="172.27.125.219", ports=ports)
     scanner.scan()
     scanner.report()
