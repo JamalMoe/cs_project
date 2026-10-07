@@ -12,7 +12,7 @@ def check_port(target: str, port: int, timeout: float = 0.5) -> int | None:
             return port
     return None
 
-def threaded_scan( target: str, ports: list[int], max_threads: int = 100 ) -> list[int]:
+def threaded_scan( target: str, ports: list[int], max_threads: int = 1024 ) -> list[int]:
     #   Scan every port in parallel and return the ones that are open.
     with ThreadPoolExecutor(max_workers=max_threads) as pool:
         results = pool.map(lambda p: check_port(target, p), ports)
