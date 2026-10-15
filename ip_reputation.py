@@ -35,7 +35,7 @@ def check_ip_reputation(ip_address: str) -> dict:
         "country": data.get("countryCode"),
         "total_reports": data["totalReports"],
     }
-# comment from master
+
 
 if __name__ == "__main__":
     result = check_ip_reputation("149.56.150.161")
