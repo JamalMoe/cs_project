@@ -1,0 +1,10 @@
+scanner:
+  default_threads: 100
+  timeout: 0.5
+
+output:
+  directory: reports/
+
+logging:
+  level: INFO
+  file: sentinelkit.log
